@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url(web/jeeno.png) no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden; /* Prevent scrollbar from animation */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Slightly darker overlay */
+            z-index: -1;
+        }
+
+        /* Keyframes for form entry animation */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .wrapper {
+            width: 420px;
+            background: transparent;
+            color: white;
+            border-radius: 15px; /* Slightly more rounded corners */
+            padding: 30px 40px;
+            backdrop-filter: blur(8px); /* Stronger blur effect */
+            border: 2px solid rgba(255, 255, 255, .3); /* Slightly stronger border */
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6); /* More prominent shadow */
+            opacity: 0; /* Initially hidden for animation */
+            animation: fadeInScale 0.8s ease-out forwards; /* Apply animation */
+            animation-delay: 0.3s; /* Delay for a smoother load */
+        }
+
+        .wrapper h1 {
+            font-size: 38px; /* Slightly larger title */
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Subtle text shadow for title */
+        }
+
+        .wrapper .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin-bottom: 30px;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1); /* Slightly opaque background for input */
+            border: none;
+            outline: none;
+            border: 2px solid rgb(255, 255, 255, .2);
+            border-radius: 40px;
+            font-size: 16px;
+            color: white;
+            padding: 0 45px 0 20px;
+            box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.3); /* Inner shadow for depth */
+            transition: all 0.3s ease; /* Faster transition for quicker feedback */
+        }
+
+        .input-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* Lighter placeholder */
+            font-family:'Courier New', Courier, monospace;
+            font-size: 14px; /* Slightly larger placeholder font */
+        }
+
+        .input-box input:focus {
+            border-color: #00bfff;
+            box-shadow: 0px 0px 25px rgba(0, 191, 255, 0.7), inset 0px 2px 5px rgba(0, 0, 0, 0.3); /* Stronger glow and keep inner shadow */
+            background: rgba(255, 255, 255, 0.15); /* Slightly more opaque on focus */
+        }
+
+        .input-box input:hover { /* Hover effect for input */
+            border-color: #00bfff;
+            box-shadow: 0px 0px 15px rgba(0, 191, 255, 0.5), inset 0px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px; /* Slightly larger icons */
+            color: rgba(255, 255, 255, 0.8); /* Slightly dimmer icon color */
+            transition: color 0.3s ease; /* Smooth transition for icon color */
+        }
+
+        .input-box input:focus + i { /* Icon color change on input focus */
+            color: #00bfff;
+        }
+
+        .wrapper .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            margin: -15px 0 20px; /* Adjusted margin */
+        }
+
+        .remember-forgot label {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between checkbox and text */
+            cursor: pointer;
+        }
+
+        .remember-forgot label input {
+            accent-color: #00bfff; /* Match checkbox color with focus glow */
+            width: auto; /* Allow checkbox to have its natural width */
+            height: auto; /* Allow checkbox to have its natural height */
+            margin: 0; /* Reset margin */
+            padding: 0; /* Reset padding */
+            box-shadow: none; /* Remove box shadow from checkbox */
+            border: none; /* Remove border from checkbox */
+        }
+
+        .remember-forgot a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+            transition: color 0.3s ease, text-decoration 0.3s ease; /* Faster transition */
+        }
+
+        .remember-forgot a:hover {
+            color: #ff4d4d; /* More vibrant red on hover */
+            text-decoration: underline;
+        }
+
+        .wrapper .btn {
+            width: 100%;
+            height: 50px; /* Slightly taller button */
+            background: rgba(255, 255, 255, 0.15); /* Slightly opaque button background */
+            border: 2px solid rgba(255, 255, 255, .3);
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4); /* Stronger button shadow */
+            cursor: pointer;
+            font-size: 18px; /* Larger button text */
+            color: white;
+            font-weight: 700; /* Bolder text */
+            font-family: 'Courier New', Courier, monospace;
+            transition: all 0.3s ease; /* Faster transition for hover/active */
+            position: relative;
+            overflow: hidden; /* For shine effect */
+        }
+
+        /* Button Hover Effect */
+        .wrapper .btn:hover {
+            background: #00bfff; /* Blue background on hover */
+            color: white; /* Keep text white */
+            transform: translateY(-3px); /* Lift button slightly */
+            border-color: #00bfff;
+            box-shadow: 0px 12px 25px rgba(0, 191, 255, 0.6); /* Stronger glow on hover */
+        }
+
+        /* Button Press Effect */
+        .wrapper .btn:active {
+            transform: translateY(0px) scale(0.98); /* Press down effect */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4); /* Reduce shadow on press */
+            background: #0099cc; /* Darker blue on active */
+        }
+
+        /* Optional: Shine effect on button */
+        .wrapper .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .wrapper .btn:hover::after {
+            left: 100%;
+        }
+
+        .wrapper .register-link {
+            font-size: 14.5px;
+            text-align: center;
+            margin: 25px 0 0; /* More space above */
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .register-link p a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a {
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            transition: color 0.3s ease; /* Faster transition */
+            text-decoration: none; /* Ensure no default underline */
+        }
+
+        .register-link a:hover {
+            color: #ff4d4d; /* More vibrant red on hover */
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .wrapper {
+                width: 90%; /* Make form take up more width on smaller screens */
+                padding: 25px 30px;
+            }
+            .wrapper h1 {
+                font-size: 32px;
+                margin-bottom: 30px;
+            }
+            .input-box input {
+                font-size: 14px;
+            }
+            .remember-forgot, .register-link {
+                font-size: 13px;
+            }
+            .wrapper .btn {
+                font-size: 16px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" required> <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox">Remember me</label>
+                <a href="#">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+
+            <div class="register-link">
+                Don't have an account? <a href="#">Register</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
