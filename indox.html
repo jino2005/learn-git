@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แด่ที่รักของฉัน ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Mali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0); /* Gradient background with a romantic feel */
+            font-family: 'Mali', cursive;
+            color: #fff;
+            text-align: center;
+            overflow: hidden; /* Hide overflow for particles */
+            position: relative;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Below the main content */
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15); /* Slightly more opaque for better readability */
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); /* Stronger shadow for depth */
+            backdrop-filter: blur(15px); /* More blur effect */
+            animation: fadeIn 1.5s ease-out; /* Slower fade-in for elegance */
+            max-width: 90%;
+            position: relative;
+            z-index: 10; /* Above particles */
+        }
+
+        .image-placeholder {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* If you use an image, set these styles for the image itself: */
+            /* font-size: 2em; */
+            /* color: #fff; */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers the circle */
+        }
+
+        h1 {
+            font-family: 'Charmonman', cursive;
+            font-size: 4em; /* Larger title */
+            color: #d6336c; /* Slightly darker pink for contrast */
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite alternate; /* More subtle pulse */
+        }
+
+        p {
+            color: #e44d71;
+            font-size: 1.6em; /* Slightly larger text */
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 400;
+            opacity: 0; /* Initially hidden */
+            animation: fadeInText 1s ease-out 0.5s forwards; /* Text fades in after a short delay */
+        }
+
+        .cta-button {
+            background: #ff69b4; /* Hot Pink */
+            color: white;
+            padding: 18px 35px; /* Larger padding for a more prominent button */
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3em; /* Larger font for button */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Smoother transition */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden; /* For the subtle hover effect */
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px); /* Lift button on hover */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+        }
+
+        /* Heart Burst Animation */
+        .heart-animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicks to pass through */
+            z-index: 5; /* Below the container, above particles */
+        }
+
+        .mini-heart {
+            width: 15px;
+            height: 15px;
+            background-color: #e44d71; /* Heart color */
+            position: absolute;
+            transform: rotate(-45deg);
+            border-radius: 50%;
+            animation: floatAndFade 1.5s ease-out forwards; /* Animation for individual hearts */
+        }
+
+        .mini-heart::before,
+        .mini-heart::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+
+        .mini-heart::before {
+            top: -50%;
+            left: 0;
+        }
+
+        .mini-heart::after {
+            top: 0;
+            left: 50%;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); } /* More subtle pulse effect */
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeInText {
+            to { opacity: 1; }
+        }
+
+        @keyframes floatAndFade {
+            0% { transform: translateY(0) rotate(-45deg) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(-45deg) scale(0.5); opacity: 0; } /* Hearts float up and fade out */
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div> <div class="container">
+        <div class="image-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.39l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </div>
+        <h1 id="loveMessage">发到我的爱人 ❤️</h1>
+        <p id="sweetWords">
+            你是我生命中的一切，黑暗中的光芒，我每天微笑的理由。谢谢你成为我生命中的一部分，我爱你，亲爱的。
+        </p>
+        <button class="cta-button" onclick="showMoreLove(event)">ກົດ!</button>
+        <div class="heart-animation-container" id="heartAnimation"></div> </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js for the background
+        particlesJS('particles-js', {
+            particles: {
+                number: { value:80 , density: { enable: true, value_area: 800 } },
+                color: { value: ['#ffafbd', '#ffc3a0', '#ffe0b2', '#fdd835', '#f48fb1'] }, // Multiple soft colors
+                shape: { type: 'circle', stroke: { width: 0, color: '#000000' }, polygon: { nb_sides: 5 } },
+                opacity: { value: 0.6, random: true, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+                line_linked: { enable: false, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'bubble' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: {
+                    grab: { distance: 400, line_linked: { opacity: 1 } },
+                    bubble: { distance: 250, size: 0, duration: 2, opacity: 0, speed: 3 },
+                    repulse: { distance: 400, duration: 0.4 },
+                    push: { particles_nb: 4 },
+                    remove: { particles_nb: 2 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Array of love messages
+        const loveMessages = [
+            "我承诺在我余生的每一天都会爱你",
+            "你是我的一切，我全心全意地爱你",
+            "与你在一起的每一秒都是最美好的时光",
+            "无论发生什么，我都会永远在你身边",
+            "你让我每天都变得更好，谢谢你",
+            "我爱你，远超任何言语所能表达",
+            "仅仅听到你的声音，就足以点亮我的一天",
+            "你是我梦想成真的人",
+            "和你在一起感觉就像在童话里",
+            "直到你出现，我的生活才变得完整"
+        ];
+        let messageIndex = 0;
+        const sweetWordsElement = document.getElementById('sweetWords');
+        const heartAnimationContainer = document.getElementById('heartAnimation');
+
+        // Function to create a single mini heart for the burst effect
+        function createMiniHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.classList.add('mini-heart');
+            // Randomize starting position slightly around the click point
+            heart.style.left = `${x + (Math.random() - 0.5) * 50}px`;
+            heart.style.top = `${y + (Math.random() - 0.5) * 50}px`;
+            heartAnimationContainer.appendChild(heart);
+
+            // Remove heart after its animation ends
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Function to create a burst of mini hearts
+        function showHeartBurst(x, y) {
+            for (let i = 0; i < 30; i++) { // Create 30 mini hearts
+                createMiniHeart(x, y);
+            }
+        }
+
+        // Function to show more love messages and trigger heart burst
+        function showMoreLove(event) {
+            const buttonRect = event.target.getBoundingClientRect();
+            // Get center coordinates of the button
+            const burstX = buttonRect.left + window.scrollX + buttonRect.width / 2;
+            const burstY = buttonRect.top + window.scrollY + buttonRect.height / 2;
+
+            showHeartBurst(burstX, burstY); // Trigger heart burst at button's position
+
+            // Fade out current text, change it, then fade in new text
+            sweetWordsElement.style.opacity = 0;
+            setTimeout(() => {
+                sweetWordsElement.textContent = loveMessages[(messageIndex + 1) % loveMessages.length];
+                sweetWordsElement.style.opacity = 1;
+                messageIndex = (messageIndex + 1) % loveMessages.length;
+            }, 500); // Small delay to let the burst animation start
+        }
+    </script>
+</body>
+</html>
